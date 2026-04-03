@@ -1,6 +1,6 @@
-# Time-based One Time Password Authentication in Flask
+# Time-based One Time Password Authentication in Flask 
 
-![2fa Demo](app/static/images/2fa_flask.gif)
+![mfa Demo](app/static/images/2fa_flask.gif)
 
 To provide for an extra layer of security to your users, you can provide a time-based two-factor authentication. In this application, I have implemented:
 
@@ -15,6 +15,7 @@ The idea behind one-time passwords is that they are valid for only one login ses
 
 1. Basic user authentication using passwords
 2. Mandatory use of 2fa for successful authentication
+3. Centralized log monitoring and analysis using Wazuh SIEM
 
 ### Tools Used
 
@@ -31,10 +32,7 @@ The idea behind one-time passwords is that they are valid for only one login ses
 11. PyQRCode to work with QRCodes
 12. Python JWT to work with password reset tokens
 13. Gunicorn and pyscopg2 for heroku deployment
-
-### Contributors
-
-* [Gitau Harrison](https://github.com/GitauHarrison)
+14. Wazuh SIEM for Log Analysis
 
 ### Deployed Application
 
@@ -172,6 +170,21 @@ With the application up and running, click on:
 * Click Login
 * Enter that code in the _Token_ field
 * Click Login again (you will now be logged in)
+
+### Wazuh SIEM Integration and Log Analysis
+
+This application integrates with **Wazuh SIEM** to provide comprehensive log monitoring and security analysis. Application logs are generated locally and forwarded to a Wazuh Manager, allowing you to monitor for anomalies, set up alerts, and maintain a strong security posture.
+
+#### Key Security Capabilities:
+* **Log Analysis:** Custom Wazuh decoders and rules are used to parse specific Flask application events, such as successful logins, failed authentication attempts, and TOTP token validation errors.
+* **Visualization:** Using the Wazuh Kibana App, you can build interactive dashboards to visually monitor authentication trends, error rates, and potential security threats in real-time.
+* **Threat Detection & Incident Response:** Automatically detect suspicious activities like brute-force attacks or repeated MFA failures. You can configure active responses and alerts to notify administrators via external channels (e.g., Telegram, Slack, or email) for rapid incident response.
+
+For detailed instructions on setting up Wazuh and configuring these features, refer to the included guides:
+* [Flask Application Integration with Wazuh](FLASK_WAZUH_INTEGRATION_GUIDE.md)
+* [Wazuh Agent Installation on Windows](WAZUH_INTEGRATION.md)
+* [Wazuh Manager VM Static IP Setup Guide](STATIC_IP_SETUP_WAZUH_MANAGER.md)
+* [Security Testing and Log Analysis Guide](security_testing_and_wazuh_log_analysis_guide.txt)
 
 ### Reference
 
