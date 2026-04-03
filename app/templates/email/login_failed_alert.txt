@@ -1,0 +1,15 @@
+Dear {{ user.username }},
+
+This is a security alert to inform you that a failed login attempt to your account was detected.
+
+Details:
+- IP Address: {{ ip_address }}
+- Reason: {{ reason }}
+- Time of Event: {{ times.ist }} ({{ times.utc }})
+
+If this was you, you can safely ignore this email.
+
+If you do not recognize this activity, please be cautious. If you suspect your credentials have been compromised, please reset your password.
+
+Thank you,
+The MFA Demo Team

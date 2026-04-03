@@ -1,0 +1,53 @@
+Security Testing and Wazuh Integration Guidelines for the MFA Flask Application
+===============================================================================
+
+1. Wazuh Agent Setup and Monitoring
+----------------------------------
+- Ensure Wazuh agents are installed on all relevant servers hosting the Flask app and its dependencies.
+- Configure Wazuh agents to monitor:
+  - Application logs (e.g., 2fa_flask.log)
+  - System logs (auth logs, syslog)
+  - Network traffic logs if applicable
+- Enable file integrity monitoring on critical config files and application directories.
+- Set up real-time alerting for suspicious activities such as repeated failed logins, privilege escalations, or configuration changes.
+
+2. Security Testing Scope
+-------------------------
+- Web UI Testing:
+  - Test login, registration, password reset, and MFA setup flows.
+  - Verify proper session management and token expiration.
+  - Check for XSS, CSRF, and injection vulnerabilities.
+- API Testing:
+  - Test all authentication endpoints with valid and invalid tokens.
+  - Verify JWT token validation, expiration, and revocation.
+  - Test rate limiting and brute force protection.
+- Penetration Testing:
+  - Conduct tests for common web vulnerabilities (OWASP Top 10).
+  - Test for man-in-the-middle (MITM) attacks and secure transport (HTTPS).
+  - Verify secure storage of secrets and tokens.
+
+3. Wazuh Alerting and Response
+------------------------------
+- Configure Wazuh rules to detect:
+  - Multiple failed login attempts.
+  - Use of revoked or expired JWT tokens.
+  - Unauthorized access attempts.
+- Set up alert notifications via email, Slack, or other channels.
+- Define incident response procedures for alerts triggered by Wazuh.
+
+4. Continuous Monitoring and Improvement
+----------------------------------------
+- Regularly review Wazuh alerts and logs.
+- Update Wazuh rules and signatures based on emerging threats.
+- Perform periodic security audits and update the application accordingly.
+
+5. Documentation and Training
+-----------------------------
+- Document the Wazuh integration setup and security testing procedures.
+- Train the operations and security teams on monitoring and responding to alerts.
+
+This guideline ensures robust security monitoring and proactive threat detection for your MFA Flask application integrated with Wazuh.
+Invoke-RestMethod -Uri http://localhost:5000/api/login -Method POST -ContentType "application/json" -Body '{ "username": "your_username", "password": "your_password", "token": "your_2fa_token" }'
+curl -X POST http://localhost:5000/api/login -H "Content-Type: application/json" -d "{\"username\":\"your_username\", \"password\":\"your_password\", \"token\":\"your_2fa_token\"}"
+curl -X GET http://localhost:5000/api/protected -H "Authorization: Bearer your_access_token"
+ python -m flask run --host=0.0.0.0

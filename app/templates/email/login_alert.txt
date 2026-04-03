@@ -1,0 +1,14 @@
+Dear {{ user.username }},
+
+This is a security alert to inform you that a new login to your account was detected.
+
+Details:
+- IP Address: {{ ip_address }}
+- Time of Event: {{ times.ist }} ({{ times.utc }})
+
+If this was you, you can safely ignore this email.
+
+If you do not recognize this activity, please reset your password immediately and review your account security.
+
+Thank you,
+The MFA Demo Team

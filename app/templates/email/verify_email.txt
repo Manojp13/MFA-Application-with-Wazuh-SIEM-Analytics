@@ -1,0 +1,10 @@
+Hi {{ user.first_name or user.username }},
+
+Thank you for registering. Please copy and paste the link below into your browser to verify your email address and complete your registration:
+
+{{ url_for('verify_email', token=token, _external=True) }}
+
+If you did not register for this account, please ignore this email.
+
+Best regards,
+The MFA Demo Team

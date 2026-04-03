@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+<div style="text-align: center;">
+    <h1>Welcome to the Home Page</h1>
+
+    <h1>Time-based OTP</h1>
+    {% if user %}
+        <p><strong>Welcome, {{ user.username }}!</strong></p>
+        <p><strong>Email: {{ user.email }}</strong></p>
+    {% endif %}
+
+    <div style="display: inline-block; text-align: left; max-width: 600px;">
+        <p>
+            To successfully test this application, you will need to do the following:
+            <ul>
+                <li>Have a Smartphone</li>
+                <li>Have access to PlayStore or App Store </li>
+            </ul>
+        </p>
+        <p>
+            You can choose either of these applications to help with the QR Code scanning:
+            <ul>
+                <li><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_US&gl=US">Google Authenticator</a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=org.fedorahosted.freeotp&hl=en_US&gl=US">Free OTP</a></li>
+            </ul>
+            Or any other you may like!
+        </p>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <img class="img-fluid" style="max-width: 100%; height: auto;" src="{{ url_for('static', filename='images/Multi-factor_Authentication_MFA.png') }}">
+    </div>           
+</div>
+{% endblock %}

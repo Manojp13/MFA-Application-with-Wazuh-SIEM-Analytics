@@ -1,0 +1,21 @@
+<p>Dear Admin,</p>
+<p>
+    This is a security alert to inform you of a <b>failed login attempt</b> for a username that does not exist in the system.
+</p>
+<p>
+    Details of the attempt are as follows:
+</p>
+<ul>
+    <li><b>Attempted Username:</b> {{ username }}</li>
+    <li><b>Reason:</b> {{ reason }}</li>
+    <li><b>IP Address:</b> {{ ip_address }}</li>
+    <li><b>Time (IST):</b> {{ times.ist }}</li>
+    <li><b>Time (UTC):</b> {{ times.utc }}</li>
+</ul>
+<p>
+    This could be a typo or a potential attempt to guess usernames. No action is required on your part unless you see a high volume of these alerts, which could indicate a brute-force or enumeration attack.
+</p>
+<p>
+    Sincerely,<br>
+    The 2FA Demo Team
+</p>

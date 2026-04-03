@@ -1,0 +1,10 @@
+<p>Dear {{ user.username }},</p>
+<p>This is a security alert to inform you that a failed login attempt to your account was detected.</p>
+<h3>Details:</h3>
+<ul>
+    <li><strong>IP Address:</strong> {{ ip_address }}</li>
+    <li><strong>Reason:</strong> {{ reason }}</li>
+    <li><strong>Time of Event:</strong> {{ times.ist }} ({{ times.utc }})</li>
+</ul>
+<p>If you do not recognize this activity, please be cautious. If you suspect your credentials have been compromised, please reset your password.</p>
+<p>Thank you,<br>The MFA Demo Team</p>

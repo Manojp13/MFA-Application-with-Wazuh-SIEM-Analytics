@@ -1,0 +1,15 @@
+.my-form{
+    border: 1px solid #e6e6e6;
+    padding: 20px;
+    border-radius: 3px;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+}
+p{
+    padding-top: 15px;
+}
+.action-form {
+    display: inline-block;
+    margin-bottom: 5px; /* Consolidates spacing for all action buttons */
+}

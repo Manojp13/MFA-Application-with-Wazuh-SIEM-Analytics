@@ -1,0 +1,59 @@
+Log Analysis in Wazuh for MFA Flask Application
+===============================================
+
+1. Configure Log Collection
+---------------------------
+- Ensure the Flask application logs (e.g., 2fa_flask.log) are accessible to the Wazuh agent.
+- Configure the Wazuh agent's `ossec.conf` to monitor the log file path:
+  ```xml
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/path/to/2fa_flask.log</location>
+  </localfile>
+  ```
+- Adjust the log format if your app uses a custom format.
+
+2. Create Custom Decoders
+-------------------------
+- Define custom decoders in Wazuh to parse your Flask app log entries.
+- Example decoder snippet for login events:
+  ```xml
+  <decoder name="flask-login">
+    <program_name>2fa_flask</program_name>
+    <regex>Login successful for user: (?P<user>\w+)</regex>
+  </decoder>
+  ```
+- Place custom decoders in `/var/ossec/etc/decoders/local_decoder.xml`.
+
+3. Define Rules for Alerts
+--------------------------
+- Create rules to detect suspicious activities such as:
+  - Multiple failed login attempts
+  - Token validation errors
+  - Unauthorized access attempts
+- Example rule snippet:
+  ```xml
+  <rule id="100001" level="10">
+    <decoded_as>flask-login</decoded_as>
+    <field name="user">.+</field>
+    <description>Multiple failed login attempts detected</description>
+  </rule>
+  ```
+- Add rules in `/var/ossec/etc/rules/local_rules.xml`.
+
+4. Use Wazuh Kibana App for Visualization
+-----------------------------------------
+- Use the Wazuh Kibana plugin to visualize alerts and logs.
+- Create dashboards to monitor login activity, errors, and security events.
+
+5. Regular Review and Tuning
+----------------------------
+- Regularly review alerts and logs for false positives.
+- Tune decoders and rules to improve accuracy.
+
+6. Integration with Incident Response
+-------------------------------------
+- Configure alert notifications (email, Slack, etc.).
+- Define workflows for responding to detected incidents.
+
+This guide helps you set up effective log analysis in Wazuh tailored to your MFA Flask application logs.
