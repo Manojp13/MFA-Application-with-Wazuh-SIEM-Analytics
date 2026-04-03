@@ -1,4 +1,4 @@
-# Time-based One Time Password Authentication in Flask 
+# Time-based One Time Password Authentication with Wazuh SIEM Integration and Log Analysis
 
 ![mfa Demo](app/static/images/2fa_flask.gif)
 
